@@ -22,7 +22,8 @@ public class MakeChange {
 					makeChange(price, cash);
 				}
 				else {
-					System.out.println("Please go ask your mom for more money:");
+					System.err.println("*    Please go ask your mom for more money     *");
+					System.err.println("************************************************");
 				}
 				
 			
@@ -32,59 +33,102 @@ public class MakeChange {
 
 	private static void makeChange(double price, double cash) {
 		double change = cash - price;
+		
 			if (change != 0) {
-				System.out.println("Your change is:");
+				System.out.println("*****************************************");
+				System.out.print("*\tYour change is: $ ");
+				System.out.printf("%6.2f", change);
+				System.out.println("\t*");
 			}
+			
 		int twenty = (int) change / 20; 
-			if (twenty != 0) {
-				System.out.println(twenty + " Twenty(ies)");
+			if (twenty == 1) {
+				System.out.println("*\t" + twenty + "\tTwenty dollar bill\t*");
 			}
+			else if (twenty > 1) {
+				System.out.println("*\t" + twenty + "\tTwenty dollar bills\t*");
+			}
+				
 			change -= 20 * twenty;
+			
 		int tens = (int) change / 10; 
-			if (tens != 0) {
-				System.out.println(tens + " Ten(s)");
+			if (tens == 1) {
+				System.out.println("*\t" + tens + "\tTen dollar bill\t\t*");
 			}
+			
 			change -= 10 * tens;
+			
 		int fives = (int) change  / 5;
-			if (fives != 0) {
-				System.out.println(fives + " Five(s)");
+			if (fives == 1) {
+				System.out.println("*\t" + fives + "\tFive dollar bill\t*");
 			}
+			
 			change -= 5 * fives;
+			
 		int ones = (int) change / 1; 
-			if (ones != 0) {
-				System.out.println(ones + " One(s)");
+			if (ones == 1) {
+				System.out.println("*\t" + ones + "\tOne dollar bill\t\t*");
 			}
+			else if (ones > 1) {
+				System.out.println("*\t" + ones + "\tOne dollar bills\t*");
+			}
+			
 			change -= 1 * ones;
-		int quarters = (int) (change / .25);
-			if (quarters != 0) {
-				System.out.println(quarters + " Quarter(s)");
+			
+			change = Math.round(change * 100);
+			
+		int quarters = (int) (change / 25);
+			if (quarters == 1) {
+				System.out.println("*\t" + quarters + "\tQuarter\t\t\t*");
 			}
-			change -= .25 * quarters;
-		int dimes = (int) (change / .10);
-			if (dimes != 0) {
-				System.out.println(dimes + " Dime(s)");
+			else if (quarters > 1) {
+				System.out.println("*\t" + quarters + "\tQuarters\t\t*");
 			}
-			change -= .1 * dimes;
-		int nickles = (int) (change / .05);
-			if (nickles != 0) {
-				System.out.println(nickles + " Nickle(s)");
+			
+			change -= 25 * quarters;
+			
+		int dimes = (int) (change / 10);
+			if (dimes == 1) {
+				System.out.println("*\t" + dimes + "\tDime\t\t\t*");
 			}
-			change -= .05 * nickles;
-		int pennies = (int) Math.round((change / .01));
-			if (pennies != 0) {
-				System.out.println(pennies + " Penny(ies)");
+			else if (dimes > 1) {
+				System.out.println("*\t" + dimes + "\tDimes\t\t\t*");
 			}
+			
+			change -= 10 * dimes;
+			
+		int nickles = (int) (change / 05);
+			if (nickles == 1) {
+				System.out.println("*\t" + nickles + "\tNickle\t\t\t*");
+			}
+			else if (nickles > 1) {
+				System.out.println("*\t" + nickles + "\tNickles\t\t*");
+			}
+			
+			change -= 05 * nickles;
+			
+		int pennies = (int) (change / 01);
+			if (pennies == 1) {
+				System.out.println("*\t" + pennies + "\tPenny\t\t\t*");
+			}
+			else if (pennies > 1) {
+				System.out.println("*\t" + pennies + "\tPennies\t\t\t*");
+			}
+			System.out.println("*****************************************");
+			
 	}		
 
 	private static void exactCash(double price, double cash) {
 		if (price == cash) {
-			System.out.println("Customer provided exact change: ");
+			System.out.println("*****************************************");
+			System.out.println("*    Customer provided exact change     *");
 		}		
 	}
 
 	private static boolean insufficentFunds(double price, double cash, boolean enoughMoney) {
 		if (price > cash) {
-			System.out.println("Insufficient funds provided, please try again:");
+			System.err.println("************************************************");
+			System.err.println("*         Insufficient funds provided          *");
 			enoughMoney = true;
 			return enoughMoney;
 		}
